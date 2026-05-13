@@ -1,0 +1,13 @@
+---
+description: Forest City Worlds monorepo conventions
+globs: "*"
+---
+
+# Forest City Worlds
+
+- **Monorepo**: pnpm workspaces + Turbo. Prefer `pnpm` from the repo root.
+- **Web**: Next.js 15 App Router in `apps/web`; shared UI in `packages/ui` (`@fcw/ui`). Import brand tokens via `@import "@fcw/ui/tokens.css"` in `globals.css`.
+- **Policies**: Edit `packages/auth-policy/src/policies.ts` only; run `pnpm codegen:policies` and commit `apps/api/forest_api/_policies.py`.
+- **Python**: `apps/api` uses uv (`uv sync`, `uv run`). Match Ruff + strict mypy settings in `pyproject.toml`.
+- **Quality**: Biome for TS/JS; respect WCAG (landmarks, heading order, skip link, focus rings, reduced motion for decorative animation).
+- **Docs**: Architecture and phased roadmap live in `docs/forest-city-worlds-bootstrap-plan.md`.

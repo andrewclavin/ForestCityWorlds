@@ -1,0 +1,23 @@
+{
+  "name": "forest-city-worlds",
+  "private": true,
+  "packageManager": "pnpm@9.15.0",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "typecheck": "turbo run typecheck",
+    "format": "biome format --write .",
+    "check": "biome check .",
+    "check:policy-codegen": "bash scripts/check-policy-codegen.sh",
+    "codegen:policies": "node packages/auth-policy/scripts/codegen.mjs",
+    "forest": "tsx infra/bin/forest.ts"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "turbo": "^2.3.3",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

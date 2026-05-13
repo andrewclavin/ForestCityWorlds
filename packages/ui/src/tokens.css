@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+/* Forest City Worlds — brand palette */
+@theme {
+  --color-forest-deep: #0f2a1f;
+  --color-forest-canopy: #1f4d38;
+  --color-forest-leaf: #4a7c59;
+  --color-forest-moss: #87a878;
+  --color-forest-spring: #c5d9b0;
+  --color-bark: #6b4f3a;
+  --color-mycelium-cream: #f4efe6;
+  --color-bioluminescent: #7df0b5;
+
+  /* var() fallbacks keep stacks valid on :root if a loader class is missing */
+  --font-display: var(--font-eb-garamond, "EB Garamond"), "EB Garamond", Georgia,
+    ui-serif, serif;
+  --font-sans: var(--font-open-sans, "Open Sans"), "Open Sans", ui-sans-serif,
+    system-ui, sans-serif;
+  /* Titles, lockups, single-line labels — lineal sans, not serif body */
+  --font-lineal: var(--font-source-sans-3, "Source Sans 3"), "Source Sans 3",
+    ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  /* Slight positive tracking on EB Garamond long-form */
+  --tracking-display: 0.03em;
+}
+
+@layer utilities {
+  .font-display {
+    letter-spacing: var(--tracking-display);
+  }
+}

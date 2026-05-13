@@ -1,0 +1,22 @@
+@import "tailwindcss";
+@import "@fcw/ui/tokens.css";
+
+@source "../../packages/ui/src/**/*.{ts,tsx}";
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply min-h-dvh bg-forest-deep text-mycelium-cream font-sans;
+  }
+
+  ::selection {
+    @apply bg-forest-canopy text-mycelium-cream;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-bioluminescent;
+  }
+}

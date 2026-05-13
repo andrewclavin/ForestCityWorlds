@@ -1,0 +1,54 @@
+---
+description: React & React Native components — size, boundaries, performance
+globs:
+  # First-party TS/TSX only under apps/ and packages/ (not root node_modules, not apps/web/.next).
+  - apps/*/app/**/*.{ts,tsx}
+  - apps/*/components/**/*.{ts,tsx}
+  - apps/*/lib/**/*.{ts,tsx}
+  - apps/*/hooks/**/*.{ts,tsx}
+  - apps/*/src/**/*.{ts,tsx}
+  - apps/*/test/**/*.{ts,tsx}
+  - apps/*/tests/**/*.{ts,tsx}
+  - apps/*/e2e/**/*.{ts,tsx}
+  - apps/*/*.{ts,tsx}
+  - packages/*/src/**/*.{ts,tsx}
+  - packages/*/scripts/**/*.{ts,tsx}
+  - packages/*/test/**/*.{ts,tsx}
+  - packages/*/tests/**/*.{ts,tsx}
+  - packages/*/*.{ts,tsx}
+alwaysApply: false
+---
+
+# Components & screens
+
+Applies to **Next.js / React** anywhere in the monorepo under `apps/*` and `packages/*` (see frontmatter globs). Sections below call out **Web** vs **Native** where behavior differs.
+
+## Size
+
+- **Target ~50 lines** per file; **avoid exceeding ~100 lines**. If a file grows, split: presentational leaf components, layout wrappers, and **local hooks** (e.g. `useHeroMotion.ts`, `useFormDraft.ts`).
+- One main export per file is fine; move private subcomponents to sibling files when they gain tests or reuse outside the parent.
+
+## Data & actions at the edge
+
+- **Boundaries** (App Router pages/layouts, route handlers, section wrappers, RN screens): own data loading, mutations, and framework hooks (`useRouter`, etc.). Pass **plain, typed props** into children.
+- **Leaf components**: props in, render out. Avoid reaching for global clients, context, or stores unless the leaf is intentionally a small connected widget (e.g. a single optimized list row).
+- **Web (Next.js 15)**: Prefer **Server Components** by default. Add `"use client"` only where the boundary needs browser APIs, event handlers, or client state. Co-locate server-only logic with routes; keep shared UI in `packages/ui` and mark client components there with `"use client"` when needed.
+- **Native**: Same boundary idea at the screen or navigator level; keep list items and presentational pieces dumb.
+
+## Performance
+
+- **`React.memo`**: Use for list rows and expensive pure subtrees when the parent re-renders often and profiling shows benefit. Do not blanket-memo everything.
+- **Web lists**: Virtualize long lists (`react-window`, TanStack Virtual, or platform primitives). Stable `key` on repeated children.
+- **Native lists**: `FlatList` / `FlashList` with stable `keyExtractor`, `renderItem`, and `extraData` only when needed.
+- **Hot paths**: Avoid inline **new** object/array literals and unstable inline callbacks in tight render loops when it measurably reduces churn; prefer `useCallback` / `useMemo` when justified, not by default.
+
+## Accessibility & motion
+
+- **Web**: Follow repo WCAG guidance in the Forest City Worlds rule (landmarks, heading order, skip link, visible focus, `prefers-reduced-motion` for decorative motion). Client components that animate should respect reduced motion (see existing patterns in `@fcw/ui`).
+- **Native**: Use platform accessibility props (`accessibilityLabel`, roles, hitSlop) and respect system reduced-motion settings for decorative animation.
+
+## Files & styles
+
+- **Components**: **PascalCase** (`SiteHeader.tsx`). **Hooks** and non-components: **`useX.ts`** / **`camelCase.ts`**.
+- **Web**: Prefer **CSS Modules or Tailwind** in this repo; shared tokens via `@fcw/ui`. Keep component-specific styles with the component until a shared pattern belongs in `packages/ui`.
+- **Native**: Keep styles beside the component until duplication forces a shared theme module.

@@ -1,0 +1,19 @@
+{
+  "name": "@fcw/auth-policy",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/policies.ts"
+  },
+  "scripts": {
+    "build": "tsc --noEmit",
+    "codegen": "node scripts/codegen.mjs",
+    "lint": "biome check .",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "typescript": "^5.7.2"
+  }
+}

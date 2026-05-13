@@ -1,0 +1,43 @@
+---
+description: Typographic voice — fonts, roles, when to use lineal vs serif vs body sans
+globs: apps/web/**/*.{tsx,ts},packages/ui/**/*.css
+alwaysApply: false
+---
+
+# Typographic voice (Forest City Worlds)
+
+This is a living note for humans and agents. Refine it as the brand settles.
+
+## Intent
+
+The site mixes **warm editorial serif** (long-form, reflective copy) with **neutral humanist sans** (Open Sans: UI, navigation, buttons, dense legibility) and a **second lineal sans** (Source Sans 3 today) for **short, structural text**: titles, section headings, brand lockups, and single-line labels. That split does three things:
+
+1. **Clarity** — Readers instantly read hierarchy: lineal titles scan as “architecture”; serif paragraphs read as “essay.”
+2. **Room to experiment** — Swapping the lineal face (or tuning weights/tracking) changes personality without touching body or prose fonts.
+3. **A slightly layered system** — Like overlapping circuits, typography can be **beautiful and sensible** while allowing **playful, experimental** accents (weight, tracking, occasional display-only treatments). Avoid gimmicks; prefer one bold choice at a time.
+
+## Roles (current defaults)
+
+| Role | Face | Tailwind | Use for |
+|------|------|----------|---------|
+| Body / UI | Open Sans | `font-sans` (default on `body`) | Nav links, buttons, forms, kicker lines that are already sans |
+| Lineal / title sans | Source Sans 3 | `font-lineal` | Page `h1`, section `h2`, card titles, “Forest City Worlds” lockup in header/footer, tight copyright line |
+| Editorial serif | EB Garamond | `font-display` | Hero paragraph, section body copy, lists, footer blurb — anything meant to read as a paragraph or list |
+| Mono | Geist Mono | `font-mono` | Code, technical labels (when added) |
+
+## Tracking and rhythm
+
+- **Serif (`font-display`)** uses a small positive **letter-spacing** via `--tracking-display` and the shared `.font-display` utility layer in `packages/ui/src/tokens.css` — enough air for Garamond without looking spaced-out.
+- **Lineal titles** often pair with **`tracking-tight`** for lockup-like lines; section headings may use **`font-semibold`** for clear hierarchy without shouting.
+
+## When in doubt
+
+- **One line or a few words at display size** → default to **`font-lineal`** if it is a title or brand, **`font-sans`** if it is chrome (nav, controls).
+- **Multiple sentences or a list** → **`font-display`**.
+- **Do not** set long paragraphs in the lineal face; reserve it for scaffolding text.
+- If a third voice is introduced later (e.g. a narrow editorial sans for pull quotes), document it here and in `@theme` with a clear name (`font-quote`, etc.).
+
+## Implementation touchpoints
+
+- Font loaders and CSS variables: `apps/web/app/layout.tsx` (Next `next/font/google` variable classes on `<html>`).
+- Stacks and tracking token: `packages/ui/src/tokens.css` (`--font-lineal`, `--font-display`, `--tracking-display`).
