@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 
+import { ProfilerLaunchButton } from "@/components/profiler/ProfilerLaunchButton";
 import { InlineGlossaryTip } from "./InlineGlossaryTip";
 import { webVitalGlossary } from "./glossary";
 
@@ -104,12 +105,9 @@ export function VitalsFooterStrip(props: {
         {" "}
         ·{" "}
       </span>
-      <Link
-        href="/profile"
-        className="text-bioluminescent underline-offset-4 hover:underline"
-      >
+      <ProfilerLaunchButton className="text-bioluminescent underline-offset-4 hover:underline">
         Profiler
-      </Link>
+      </ProfilerLaunchButton>
       {!hasSamples ? (
         <span className="block pt-1 text-forest-moss sm:inline sm:pl-2 sm:pt-0">
           (collecting baseline — visits populate the log)

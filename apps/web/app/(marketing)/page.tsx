@@ -7,7 +7,10 @@ export default function HomePage() {
       <section className="relative overflow-hidden border-b border-forest-canopy/30">
         <div className="pointer-events-none absolute inset-0" aria-hidden>
           <div className="absolute inset-0 opacity-[0.52]">
-            <MyceliumGraph className="h-full w-full scale-110" />
+            <MyceliumGraph
+              className="h-full w-full scale-110"
+              visualVariant="ambient"
+            />
           </div>
         </div>
         <div className="relative mx-auto grid max-w-6xl gap-10 px-4 py-20 sm:grid-cols-2 sm:px-6 sm:py-28">
@@ -15,7 +18,7 @@ export default function HomePage() {
             <p className="text-sm font-medium leading-snug tracking-wide text-forest-moss sm:text-[0.8125rem] sm:tracking-widest">
               Autonomously Learned Behaviors
             </p>
-            <h1 className="mt-4 font-lineal text-3xl font-semibold leading-tight tracking-tight text-mycelium-cream sm:text-4xl">
+            <h1 className="mt-4 font-lineal text-3xl font-extralight leading-tight tracking-widest text-mycelium-cream sm:text-4xl sm:tracking-[0.14em]">
               forest city worlds
             </h1>
             <p className="mt-6 font-display text-lg leading-relaxed text-forest-spring">
@@ -52,6 +55,7 @@ export default function HomePage() {
             <MyceliumGraph
               className="absolute inset-0 z-10 h-full w-full p-6"
               preserveAspectRatio="xMidYMid meet"
+              visualVariant="hero"
             />
           </div>
         </div>

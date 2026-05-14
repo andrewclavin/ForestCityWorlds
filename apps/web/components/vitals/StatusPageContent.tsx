@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 
+import { ProfilerLaunchButton } from "@/components/profiler/ProfilerLaunchButton";
 import { InlineGlossaryTip } from "@/components/vitals/InlineGlossaryTip";
 import { glossary, metricGlossary } from "@/components/vitals/glossary";
 import type {
@@ -309,12 +310,9 @@ export function StatusPageContent(props: {
             {" "}
             ·{" "}
           </span>
-          <Link
-            href="/profile"
-            className="text-sm font-medium text-bioluminescent underline-offset-4 hover:underline"
-          >
+          <ProfilerLaunchButton className="text-sm font-medium text-bioluminescent underline-offset-4 hover:underline">
             React profiler
-          </Link>
+          </ProfilerLaunchButton>
         </p>
       </section>
     </>

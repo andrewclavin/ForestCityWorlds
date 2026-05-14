@@ -13,8 +13,26 @@ export type MyceliumGraphRuntimePreset = {
    * traversing them, or still within `corridorHoldMs` after the walker left.
    */
   readonly pulseSlotsCorridorOnly: boolean;
+  /**
+   * When true (and {@link corridorHoldMs} &gt; 0), pulse slots use the same **walker or hold**
+   * window as `pulseSlotsCorridorOnly`, but you can keep {@link pulseSlotsCorridorOnly} false so
+   * spawn coefficients stay “full mesh” on those active edges. Off-corridor edges clear their slots.
+   */
+  readonly gatePulseSlotsToWalkerOrHold: boolean;
   /** Keep an edge “live” for pulse slots this long after the last traverse sample on it. */
   readonly corridorHoldMs: number;
+  /**
+   * When pulse slots are restricted ({@link pulseSlotsCorridorOnly} or
+   * {@link gatePulseSlotsToWalkerOrHold}): max number of **new** pulse-slot activations allowed on
+   * an edge **after** the walker has left but while `corridorHoldMs` still keeps the edge live.
+   * `-1` = unlimited. Ignored when neither restriction flag is set.
+   */
+  readonly maxCorridorPulseReplay: number;
+  /**
+   * Multiplier on `spawnP` during **hold-only** (walker gone, still within `corridorHoldMs`) when
+   * slots are corridor-restricted. Use &gt; 1 to match denser “full network” pulsing on that edge.
+   */
+  readonly corridorHoldPulseSpawnBoost: number;
   /**
    * When true, only edges in the active corridor can extend `lastWakeAt` via the per-edge
    * heat/travel wake pass (avoids stale heat lighting the whole mesh).
@@ -47,7 +65,10 @@ export const MYCELIUM_GRAPH_PRESET_FULL_NETWORK_RHYTHM: MyceliumGraphRuntimePres
       "Independent pulse slots on every edge; global beat strongly modulates opacity; wakes any edge with residual heat/travel.",
     maxWalkers: 2,
     pulseSlotsCorridorOnly: false,
+    gatePulseSlotsToWalkerOrHold: false,
     corridorHoldMs: 0,
+    maxCorridorPulseReplay: -1,
+    corridorHoldPulseSpawnBoost: 1,
     wakeFromCorridorEdgesOnly: false,
     bundleEdgeHeatPerTick: false,
     beatNodeOpacity: 0.056,
@@ -64,15 +85,18 @@ export const MYCELIUM_GRAPH_PRESET_SPARSE_CORRIDORS: MyceliumGraphRuntimePreset 
   {
     id: "sparseCorridors",
     description:
-      "Pulse slots + bundled heat only on 1–2 active edges (walker + short hold); weak global beat; corridor-only wakes.",
-    maxWalkers: 2,
-    pulseSlotsCorridorOnly: true,
-    corridorHoldMs: 900,
-    wakeFromCorridorEdgesOnly: true,
+      "Pulse slots + bundled heat only on walker edges + 800ms hold (gated), boosted spawn during hold; weak global beat.",
+    maxWalkers: 6,
+    pulseSlotsCorridorOnly: false,
+    gatePulseSlotsToWalkerOrHold: true,
+    corridorHoldMs: 800,
+    maxCorridorPulseReplay: -1,
+    corridorHoldPulseSpawnBoost: 5,
+    wakeFromCorridorEdgesOnly: false,
     bundleEdgeHeatPerTick: true,
-    beatNodeOpacity: 0.018,
-    beatStrokeOpacity: 0.032,
-    beatPulseSlotOpacity: 0.018,
+    beatNodeOpacity: 0.218,
+    beatStrokeOpacity: 0.32,
+    beatPulseSlotOpacity: 0.118,
     pulseSpawnCoeff0: 0.00055,
     pulseSpawnCoeffHeat: 0.001,
     pulseSpawnCoeffFill: 0.00018,

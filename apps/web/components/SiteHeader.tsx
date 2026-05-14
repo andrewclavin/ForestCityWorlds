@@ -1,3 +1,6 @@
+"use client";
+
+import { ProfilerLaunchButton } from "@/components/profiler/ProfilerLaunchButton";
 import { navItems } from "@/lib/site";
 import Link from "next/link";
 
@@ -23,6 +26,11 @@ export function SiteHeader() {
                 </Link>
               </li>
             ))}
+            <li>
+              <ProfilerLaunchButton className="rounded-sm transition-colors hover:text-bioluminescent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bioluminescent">
+                Profiler
+              </ProfilerLaunchButton>
+            </li>
           </ul>
         </nav>
       </div>

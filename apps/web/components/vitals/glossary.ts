@@ -188,6 +188,14 @@ const commitLogSection: GlossaryEntry = {
   ],
 };
 
+const profilerOverlay: GlossaryEntry = {
+  heading: "Docked profiler",
+  lines: [
+    "While open, React’s Profiler wraps the whole site so commits from navigation, client widgets, and heavy UI (for example SVG graphs) show up here.",
+    "Row updates coalesce to one batch per animation frame; timestamps advance as you interact, and Synthetic bump fires a tiny in-tree update for a known signal.",
+  ],
+};
+
 const localInstrument: GlossaryEntry = {
   heading: "Local instrument",
   lines: [
@@ -230,6 +238,7 @@ export const glossary = {
   rafCoalescing,
   commitLogGrowth,
   commitLogSection,
+  profilerOverlay,
   localInstrument,
 } as const;
 

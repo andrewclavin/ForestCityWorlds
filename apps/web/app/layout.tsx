@@ -8,6 +8,7 @@ import {
 import "./globals.css";
 import { SkipLink } from "@/components/SkipLink";
 import { WebVitalsReporter } from "@/components/WebVitalsReporter";
+import { AppProfilerRoot } from "@/components/profiler/AppProfilerRoot";
 
 const ebGaramond = EB_Garamond({
   subsets: ["latin"],
@@ -33,7 +34,7 @@ const sourceSans3 = Source_Sans_3({
   subsets: ["latin"],
   variable: "--font-source-sans-3",
   display: "swap",
-  weight: ["400", "500", "600", "700"],
+  weight: ["200", "300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -55,7 +56,7 @@ export default function RootLayout({
       <body className="font-sans antialiased">
         <SkipLink />
         <WebVitalsReporter />
-        {children}
+        <AppProfilerRoot>{children}</AppProfilerRoot>
       </body>
     </html>
   );
