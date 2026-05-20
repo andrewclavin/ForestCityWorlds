@@ -55,6 +55,16 @@ export type MyceliumGraphRuntimePreset = {
   readonly pulseSpawnCoeffFill: number;
   /** `rng() < this * dt` retargets desired slot count per edge. */
   readonly pulseRetargetBase: number;
+  /**
+   * 0–100. When a walker commits to a new edge, scales how hard the random energy multiplier hits
+   * (legacy curve is `0.55 + rng()*0.38` at 100; at 0 the multiplier stays 1 when diminishing runs).
+   */
+  readonly diminishingPulseRate: number;
+  /**
+   * 0–100. Per new edge after a node hop, percent chance to **skip** the random energy drop so
+   * pulse strength can stay the same for that hop.
+   */
+  readonly pulseStabilityLongevity: number;
 };
 
 /** Snapshot of the “busy everywhere” pulse-slot tuning (for reuse on demos / dense layouts). */
@@ -78,6 +88,8 @@ export const MYCELIUM_GRAPH_PRESET_FULL_NETWORK_RHYTHM: MyceliumGraphRuntimePres
     pulseSpawnCoeffHeat: 0.001,
     pulseSpawnCoeffFill: 0.00018,
     pulseRetargetBase: 0.00006,
+    diminishingPulseRate: 100,
+    pulseStabilityLongevity: 20,
   };
 
 /** Calm hero default: only the walker link(s) show the dense multi-pulse rhythm; rest of graph idles faster. */
@@ -86,11 +98,11 @@ export const MYCELIUM_GRAPH_PRESET_SPARSE_CORRIDORS: MyceliumGraphRuntimePreset 
     id: "sparseCorridors",
     description:
       "Pulse slots + bundled heat only on walker edges + 800ms hold (gated), boosted spawn during hold; weak global beat.",
-    maxWalkers: 6,
+    maxWalkers: 10,
     pulseSlotsCorridorOnly: false,
     gatePulseSlotsToWalkerOrHold: true,
-    corridorHoldMs: 800,
-    maxCorridorPulseReplay: -1,
+    corridorHoldMs: 1200,
+    maxCorridorPulseReplay: 5,
     corridorHoldPulseSpawnBoost: 5,
     wakeFromCorridorEdgesOnly: false,
     bundleEdgeHeatPerTick: true,
@@ -101,6 +113,8 @@ export const MYCELIUM_GRAPH_PRESET_SPARSE_CORRIDORS: MyceliumGraphRuntimePreset 
     pulseSpawnCoeffHeat: 0.001,
     pulseSpawnCoeffFill: 0.00018,
     pulseRetargetBase: 0.00006,
+    diminishingPulseRate: 100,
+    pulseStabilityLongevity: 20,
   };
 
 export const MYCELIUM_GRAPH_PRESETS = {

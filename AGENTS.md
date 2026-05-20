@@ -15,9 +15,11 @@
 
 ## Before opening a PR
 
-- `pnpm check && pnpm typecheck && pnpm test && pnpm build`
+- `pnpm check && pnpm check:contrast && pnpm typecheck && pnpm test && pnpm build`
+- `pnpm test:api` (Python tests in `apps/api`; uses `pip install -e ".[dev]"` and `pytest`)
+- `pnpm quality:site` before merging significant UI or routing changes (Lighthouse CI, Playwright + axe, pa11y-ci — requires a production build)
 - For policy edits: `pnpm check:policy-codegen`
 
 ## CI
 
-GitHub Actions runs the same checks on every push to a PR branch targeting `main`.
+GitHub Actions runs lint, typecheck, unit tests, build, policy codegen drift, API pytest + coverage, site quality (Lighthouse + Playwright + pa11y), and security scans (gitleaks, Trivy) on pushes and PRs. CodeQL runs on a weekly schedule and on PRs to `main`.

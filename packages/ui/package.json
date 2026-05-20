@@ -10,7 +10,8 @@
   "scripts": {
     "build": "tsc --noEmit",
     "lint": "biome check .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "check:contrast": "tsx scripts/contrast-check.ts"
   },
   "peerDependencies": {
     "react": "^19.0.0",
@@ -21,7 +22,9 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
+    "@types/node": "^22.13.0",
     "@types/react": "^19.0.8",
+    "tsx": "^4.19.2",
     "typescript": "^5.7.2"
   }
 }

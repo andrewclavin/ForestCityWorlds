@@ -10,9 +10,17 @@
     "typecheck": "turbo run typecheck",
     "format": "biome format --write .",
     "check": "biome check .",
+    "check:contrast": "pnpm --filter @fcw/ui check:contrast",
     "check:policy-codegen": "bash scripts/check-policy-codegen.sh",
     "codegen:policies": "node packages/auth-policy/scripts/codegen.mjs",
-    "forest": "tsx infra/bin/forest.ts"
+    "forest": "pnpm --filter @fcw/infra forest",
+    "synth": "pnpm --filter @fcw/infra synth",
+    "diff": "pnpm --filter @fcw/infra diff",
+    "deploy:web:dev": "pnpm --filter @fcw/infra deploy:web:dev",
+    "destroy:web:dev": "pnpm --filter @fcw/infra destroy:web:dev",
+    "build:open-next": "pnpm --filter web build:open-next",
+    "quality:site": "pnpm build --filter web && pnpm --filter web quality:site",
+    "test:api": "bash scripts/test-api.sh"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",

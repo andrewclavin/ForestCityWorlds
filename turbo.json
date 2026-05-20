@@ -10,6 +10,11 @@
     },
     "lint": {},
     "typecheck": {},
-    "test": {}
+    "test": {},
+    "check:contrast": {},
+    "quality:site": {
+      "dependsOn": ["build"],
+      "cache": false
+    }
   }
 }

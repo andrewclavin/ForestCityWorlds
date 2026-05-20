@@ -1,0 +1,25 @@
+{
+  "name": "@fcw/infra",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Forest City Worlds CDK app — Phase 1 web stack (synth-only without AWS).",
+  "scripts": {
+    "synth": "cdk synth --output cdk.out",
+    "diff": "cdk diff",
+    "deploy:web:dev": "cdk deploy WebStack-dev --require-approval=never",
+    "destroy:web:dev": "cdk destroy WebStack-dev --force",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "forest": "tsx bin/forest.ts"
+  },
+  "devDependencies": {
+    "@fcw/tsconfig": "workspace:*",
+    "@types/node": "^22.13.0",
+    "aws-cdk": "^2.166.0",
+    "aws-cdk-lib": "^2.166.0",
+    "constructs": "^10.4.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^3.1.2"
+  }
+}

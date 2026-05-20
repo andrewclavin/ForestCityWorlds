@@ -12,8 +12,22 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
   "pytest>=8.3.0",
+  "pytest-asyncio>=0.24.0",
+  "pytest-cov>=6.0.0",
   "httpx>=0.28.0",
+  "hypothesis>=6.122.0",
+  "moto[dynamodb]>=5.0.0",
+  "schemathesis>=3.39.0",
 ]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
+
+[tool.coverage.run]
+branch = true
+source = ["forest_api"]
 
 [tool.ruff]
 line-length = 100

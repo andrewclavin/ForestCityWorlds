@@ -1,3 +1,20 @@
+Metadata-Version: 2.4
+Name: forest-api
+Version: 0.0.1
+Summary: Forest City Worlds API (FastAPI) — auth and business logic in later phases.
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+Requires-Dist: fastapi>=0.115.0
+Requires-Dist: uvicorn[standard]>=0.32.0
+Provides-Extra: dev
+Requires-Dist: pytest>=8.3.0; extra == "dev"
+Requires-Dist: pytest-asyncio>=0.24.0; extra == "dev"
+Requires-Dist: pytest-cov>=6.0.0; extra == "dev"
+Requires-Dist: httpx>=0.28.0; extra == "dev"
+Requires-Dist: hypothesis>=6.122.0; extra == "dev"
+Requires-Dist: moto[dynamodb]>=5.0.0; extra == "dev"
+Requires-Dist: schemathesis>=3.39.0; extra == "dev"
+
 # forest-api
 
 FastAPI service for Forest City Worlds. Phase 1 ships a health stub; DynamoDB, JWT, OAuth, and Mangum arrive in Phase 2.

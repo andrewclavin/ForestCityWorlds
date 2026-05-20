@@ -1,0 +1,22 @@
+{
+  "app": "tsx bin/app.ts",
+  "watch": {
+    "include": ["bin/**", "lib/**"],
+    "exclude": ["node_modules", "cdk.out", "test"]
+  },
+  "context": {
+    "@aws-cdk/aws-iam:minimizePolicies": true,
+    "@aws-cdk/core:enableStackNameDuplicates": "true",
+    "@aws-cdk/core:stackRelativeExports": true,
+    "@aws-cdk/aws-cloudfront:defaultSecurityPolicyTLSv1.2_2021": true,
+    "@aws-cdk/aws-s3:serverAccessLogsUseBucketPolicy": true,
+    "@aws-cdk/aws-lambda:recognizeVersionProps": true,
+    "aws-cdk:enableDiffNoFail": true,
+    "fcw:region": "us-east-1",
+    "fcw:env:dev": {
+      "stackSuffix": "dev",
+      "openNextOutDir": "../apps/web/.open-next",
+      "logRetentionDays": 30
+    }
+  }
+}

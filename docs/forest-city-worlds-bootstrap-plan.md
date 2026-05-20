@@ -7,7 +7,7 @@ todos:
     status: completed
   - id: phase0.5-quality-bar
     content: "Phase 0.5: Quality bar from day one — testing harness (Vitest/RTL/MSW + pytest/httpx/moto + Playwright), a11y (jsx-a11y, jest-axe, @axe-core/playwright, pa11y-ci, Lighthouse CI), SOC 2-aligned controls (cdk-nag, Prowler, CodeQL, Dependabot, gitleaks, Trivy, CloudTrail, OIDC), perf observability (web-vitals, OpenTelemetry, k6, Grafana Cloud Free)"
-    status: pending
+    status: completed
   - id: phase1-brand-site
     content: "Phase 1: Build branded public marketing site in Next.js 15 with packages/ui tokens, MyceliumGraph hero, deploy via OpenNext+CDK"
     status: in_progress
